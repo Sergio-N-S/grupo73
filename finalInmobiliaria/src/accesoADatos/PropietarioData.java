@@ -30,7 +30,7 @@ public class PropietarioData {
             ps.setString(2, propietario.getNombre());
             ps.setInt(3, propietario.getDni());
             ps.setString(4, propietario.getDomicilio());
-            ps.setInt(5, propietario.getTelefono());
+            ps.setString(5, propietario.getTelefono());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
 

@@ -8,12 +8,12 @@ public class Propietario {
     private int dni;
     private String domicilio;
     private String nombre;
-    private int telefono;
+    private String telefono;
 
     public Propietario() {
     }
 
-    public Propietario(String apellido, int dni, String domicilio, String nombre, int telefono) {
+    public Propietario(String apellido, int dni, String domicilio, String nombre, String telefono) {
         this.apellido = apellido;
         this.dni = dni;
         this.domicilio = domicilio;
@@ -21,7 +21,7 @@ public class Propietario {
         this.telefono = telefono;
     }
 
-    public Propietario(int id_propietario, String apellido, int dni, String domicilio, String nombre, int telefono) {
+    public Propietario(int id_propietario, String apellido, int dni, String domicilio, String nombre, String telefono) {
         this.id_propietario = id_propietario;
         this.apellido = apellido;
         this.dni = dni;
@@ -72,11 +72,11 @@ public class Propietario {
         this.nombre = nombre;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 

@@ -261,8 +261,8 @@ public class propietarioVista extends javax.swing.JInternalFrame {
         int dni=Integer.parseInt(textDNI.getText());
         String nombre=textNom.getText();
         String domicilio=textDomi.getText();
-        int telefono=Integer.parseInt(textTele.getText());
-    
+        String telefono=textTele.getText();
+        
         propietario1= new Propietario(apellido,dni,domicilio,nombre,telefono);
     
         return propietario1;
