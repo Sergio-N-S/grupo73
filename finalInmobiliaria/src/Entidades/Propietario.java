@@ -9,25 +9,28 @@ public class Propietario {
     private String domicilio;
     private String nombre;
     private String telefono;
+    private boolean estado;
 
     public Propietario() {
     }
 
-    public Propietario(String apellido, int dni, String domicilio, String nombre, String telefono) {
+    public Propietario(String apellido, int dni, String domicilio, String nombre, String telefono,boolean estado) {
         this.apellido = apellido;
         this.dni = dni;
         this.domicilio = domicilio;
         this.nombre = nombre;
         this.telefono = telefono;
+        this.estado=estado;
     }
 
-    public Propietario(int id_propietario, String apellido, int dni, String domicilio, String nombre, String telefono) {
+    public Propietario(int id_propietario, String apellido, int dni, String domicilio, String nombre, String telefono,boolean estado) {
         this.id_propietario = id_propietario;
         this.apellido = apellido;
         this.dni = dni;
         this.domicilio = domicilio;
         this.nombre = nombre;
         this.telefono = telefono;
+        this.estado=estado;
     }
 
    
@@ -79,6 +82,15 @@ public class Propietario {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+    
 
     @Override
     public String toString() {

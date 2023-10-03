@@ -263,7 +263,7 @@ public class propietarioVista extends javax.swing.JInternalFrame {
         String domicilio=textDomi.getText();
         String telefono=textTele.getText();
         
-        propietario1= new Propietario(apellido,dni,domicilio,nombre,telefono);
+        propietario1= new Propietario(apellido,dni,domicilio,nombre,telefono,true);
     
         return propietario1;
     }
