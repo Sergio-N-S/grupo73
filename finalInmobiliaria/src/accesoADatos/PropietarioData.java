@@ -22,7 +22,7 @@ public class PropietarioData {
     
      public void guardarPropietario(Propietario propietario) {
 
-        String sql = " VALUES (?,?,?,?,?)";
+        String sql = " INSERT INTO `propietario`(`apellido`, `nombre`, `DNI`, `domicilio`, `telefono`)VALUES (?,?,?,?,?)";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
