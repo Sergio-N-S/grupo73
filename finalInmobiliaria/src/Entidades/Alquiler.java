@@ -13,8 +13,13 @@ public class Alquiler {
     private char marca;
     private Propiedad propiedad;
     private String vendedor;
+    private boolean estado;
+    private String vigencia;
+    private String nombreGarante;
+    private String dniGarante;
+    private String telGarante;
 
-    public Alquiler(Inquilino inquilino, Date fecha_Final, Date fecha_Inicio, Date Fecha_Realizacion, char marca, Propiedad propiedad, String vendedor) {
+    public Alquiler(Inquilino inquilino, Date fecha_Final, Date fecha_Inicio, Date Fecha_Realizacion, char marca, Propiedad propiedad, String vendedor,String vigencia,String nombreGarante,String dniGarante,String telGarante) {
         this.inquilino = inquilino;
         this.fecha_Final = fecha_Final;
         this.fecha_Inicio = fecha_Inicio;
@@ -22,9 +27,13 @@ public class Alquiler {
         this.marca = marca;
         this.propiedad = propiedad;
         this.vendedor = vendedor;
+        this.vigencia = vigencia;
+        this.nombreGarante = nombreGarante;
+        this.dniGarante = dniGarante;
+        this.telGarante = telGarante;
     }
 
-    public Alquiler(int id_alquiler, Inquilino inquilino, Date fecha_Final, Date fecha_Inicio, Date Fecha_Realizacion, char marca, Propiedad propiedad, String vendedor) {
+    public Alquiler(int id_alquiler, Inquilino inquilino, Date fecha_Final, Date fecha_Inicio, Date Fecha_Realizacion, char marca, Propiedad propiedad, String vendedor,String vigencia,String nombreGarante,String dniGarante,String telGarante) {
         this.id_alquiler = id_alquiler;
         this.inquilino = inquilino;
         this.fecha_Final = fecha_Final;
@@ -33,6 +42,10 @@ public class Alquiler {
         this.marca = marca;
         this.propiedad = propiedad;
         this.vendedor = vendedor;
+        this.vigencia = vigencia;
+        this.nombreGarante = nombreGarante;
+        this.dniGarante = dniGarante;
+        this.telGarante = telGarante;
     }
 
     public Alquiler() {
@@ -102,6 +115,47 @@ public class Alquiler {
         this.vendedor = vendedor;
     }
 
+    public boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    public String getVigencia() {
+        return vigencia;
+    }
+
+    public void setVigencia(String vigencia) {
+        this.vigencia = vigencia;
+    }
+
+    public String getNombreGarante() {
+        return nombreGarante;
+    }
+
+    public void setNombreGarante(String nombreGarante) {
+        this.nombreGarante = nombreGarante;
+    }
+
+    public String getDniGarante() {
+        return dniGarante;
+    }
+
+    public void setDniGarante(String dniGarante) {
+        this.dniGarante = dniGarante;
+    }
+
+    public String getTelGarante() {
+        return telGarante;
+    }
+
+    public void setTelGarante(String telGarante) {
+        this.telGarante = telGarante;
+    }
+
+    
     @Override
     public String toString() {
         return "Alquiler{" + "id_alquiler=" + id_alquiler + ", inquilino=" + inquilino + ", fecha_Final=" + fecha_Final + ", fecha_Inicio=" + fecha_Inicio + ", Fecha_Realizacion=" + Fecha_Realizacion + ", marca=" + marca + ", propiedad=" + propiedad + ", vendedor=" + vendedor + '}';
