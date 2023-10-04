@@ -122,7 +122,7 @@ public class PropietarioData {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-               Propietario propietario=new Propietario();
+               Propietario propietario;
                
                 propietario = new Propietario();
                 propietario.setId_propietario(rs.getInt("id_Propietario"));
