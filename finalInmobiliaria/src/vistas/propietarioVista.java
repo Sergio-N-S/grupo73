@@ -4,6 +4,7 @@ package vistas;
 import Entidades.Propietario;
 import accesoADatos.PropietarioData;
 import java.sql.Connection;
+import javax.swing.JOptionPane;
 
 
 
@@ -12,6 +13,9 @@ public class propietarioVista extends javax.swing.JInternalFrame {
   
     public propietarioVista() {
         initComponents();
+        modificar.setEnabled(false);
+        guardar.setEnabled(false);
+        eliminar.setEnabled(false);
     }
         private Connection con;
         Propietario propietario1;
@@ -29,7 +33,7 @@ public class propietarioVista extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        textID = new javax.swing.JTextField();
+        textId = new javax.swing.JTextField();
         textDNI = new javax.swing.JTextField();
         textApe = new javax.swing.JTextField();
         textNom = new javax.swing.JTextField();
@@ -63,11 +67,11 @@ public class propietarioVista extends javax.swing.JInternalFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setText("Telefono");
 
-        textID.setEditable(false);
-        textID.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        textID.addActionListener(new java.awt.event.ActionListener() {
+        textId.setEditable(false);
+        textId.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        textId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textIDActionPerformed(evt);
+                textIdActionPerformed(evt);
             }
         });
 
@@ -96,8 +100,18 @@ public class propietarioVista extends javax.swing.JInternalFrame {
         });
 
         modificar.setText("Modificar");
+        modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificarActionPerformed(evt);
+            }
+        });
 
         eliminar.setText("Eliminar");
+        eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarActionPerformed(evt);
+            }
+        });
 
         salir.setText("Salir");
         salir.addActionListener(new java.awt.event.ActionListener() {
@@ -107,6 +121,11 @@ public class propietarioVista extends javax.swing.JInternalFrame {
         });
 
         buscar.setText("Buscar");
+        buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -136,7 +155,7 @@ public class propietarioVista extends javax.swing.JInternalFrame {
                             .addComponent(jLabel6))
                         .addGap(92, 92, 92)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(textID)
+                            .addComponent(textId)
                             .addComponent(textDNI)
                             .addComponent(textApe)
                             .addComponent(textNom)
@@ -160,7 +179,7 @@ public class propietarioVista extends javax.swing.JInternalFrame {
                         .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(textID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(textId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(118, 118, 118)
                         .addComponent(buscar)))
@@ -197,12 +216,16 @@ public class propietarioVista extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void textIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textIDActionPerformed
+    private void textIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textIdActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textIDActionPerformed
+    }//GEN-LAST:event_textIdActionPerformed
 
     private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
-        textID.setText("");
+        buscar.setEnabled(false);
+        modificar.setEnabled(false);
+        eliminar.setEnabled(false);
+        guardar.setEnabled(true);
+        textId.setText("");
         textApe.setText("");
         textDomi.setText("");
         textDNI.setText("");
@@ -228,8 +251,110 @@ public class propietarioVista extends javax.swing.JInternalFrame {
         PropietarioData propieData= new PropietarioData();
         propieData.guardarPropietario(propietario1);
         
+    //limpio los textbox
+        textId.setText("");
+        textApe.setText("");
+        textDomi.setText("");
+        textDNI.setText("");
+        textNom.setText("");
+        textTele.setText("");
+       
+
+    //habilitacion de botones
+        buscar.setEnabled(true);
+        nuevo.setEnabled(true);
+        modificar.setEnabled(false);
+        guardar.setEnabled(false);
+        eliminar.setEnabled(false);
+       
+       
        
     }//GEN-LAST:event_guardarActionPerformed
+
+    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
+        guardar.setEnabled(false);
+        
+String opciones = (JOptionPane.showInputDialog(null, "seleccione una opcion", "Buscar", JOptionPane.QUESTION_MESSAGE, null,
+                new Object[]{"Buscar por id"}, "seleccion")).toString();
+
+        switch (opciones) {
+            
+            case "Buscar por id":
+                String id = JOptionPane.showInputDialog("Ingrese el id");
+              
+                int miId = Integer.parseInt(id);
+                PropietarioData pd = new PropietarioData();
+                propietario1 = pd.buscarPropietarioPorID(miId);
+                textId.setText(id);
+                textApe.setText(propietario1.getApellido());  //alumno1.getApellido());
+                textDNI.setText(String.valueOf(propietario1.getDni()));
+                textNom.setText(propietario1.getNombre());
+                textDomi.setText(propietario1.getDomicilio());
+                textTele.setText(propietario1.getTelefono());
+                break;
+        }
+
+        modificar.setEnabled(true);
+        eliminar.setEnabled(true);
+        nuevo.setEnabled(true);
+        guardar.setEnabled(false);
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buscarActionPerformed
+
+    private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
+        
+        Propietario p1=new Propietario();
+        PropietarioData pd=new PropietarioData();
+        p1.setId_propietario(Integer.parseInt(textId.getText()));
+        p1.setDni(Integer.parseInt(textDNI.getText()));
+        p1.setApellido(textApe.getText());
+        p1.setNombre(textNom.getText());
+        p1.setDomicilio(textDomi.getText());
+        p1.setTelefono(textTele.getText());
+        p1.setEstado(true);
+               
+        pd.modificarPropietario(p1);
+        
+          
+        
+    textId.setText("");
+    textApe.setText("");
+    textDomi.setText("");
+    textDNI.setText("");
+    textNom.setText("");
+    textTele.setText("");    
+    nuevo.setEnabled(true);
+    modificar.setEnabled(false);
+    guardar.setEnabled(false);
+    eliminar.setEnabled(false);
+      
+     
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_modificarActionPerformed
+
+    private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
+        
+        int idBorrar=Integer.parseInt(textId.getText());
+        PropietarioData pd=new PropietarioData();
+        pd.eliminarPropietario(idBorrar);
+        
+        textId.setText("");
+        textApe.setText("");
+        textDomi.setText("");
+        textDNI.setText("");
+        textNom.setText("");
+        textTele.setText("");    
+        nuevo.setEnabled(true);
+        modificar.setEnabled(false);
+        guardar.setEnabled(false);
+        eliminar.setEnabled(false);
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -249,7 +374,7 @@ public class propietarioVista extends javax.swing.JInternalFrame {
     private javax.swing.JTextField textApe;
     private javax.swing.JTextField textDNI;
     private javax.swing.JTextField textDomi;
-    private javax.swing.JTextField textID;
+    private javax.swing.JTextField textId;
     private javax.swing.JTextField textNom;
     private javax.swing.JTextField textTele;
     // End of variables declaration//GEN-END:variables

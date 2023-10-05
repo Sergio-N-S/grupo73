@@ -194,7 +194,10 @@ public class menuPrincipal extends javax.swing.JFrame {
         //mv.setVisible(true);
         //escritorio.add(mv);
         //escritorio.moveToFront(mv);
-        
+         propiedadVista propiedadV=new propiedadVista();
+        propiedadV.setVisible(true);
+         escritorio.add(propiedadV);
+        escritorio.moveToFront(propiedadV);
         
         
         

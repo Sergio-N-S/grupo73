@@ -7,7 +7,7 @@ public class Propiedad {
   private String accesibilidad;
   private String direccion;
   private Propietario propietario;
-  private char estadoPropiedad;
+  //private char estadoPropiedad;
   private String forma;
   private Inquilino inquilino;
   private float precio;
@@ -17,13 +17,13 @@ public class Propiedad {
   private String zona;
   private boolean estado;
 
-    public Propiedad(String accesibilidad, String direccion, Propietario propietario, char estadoPropiedad, String forma, Inquilino inquilino, float precio, String revisor, int superficieMinima, String tipoPropiedad, String zona, boolean estado) {
+    public Propiedad(String accesibilidad, String direccion, Propietario propietario, String forma, float precio, String revisor, int superficieMinima, String tipoPropiedad, String zona, boolean estado) {
         this.accesibilidad = accesibilidad;
         this.direccion = direccion;
         this.propietario = propietario;
-        this.estadoPropiedad = estadoPropiedad;
+       // this.estadoPropiedad = estadoPropiedad;
         this.forma = forma;
-        this.inquilino = inquilino;
+        //this.inquilino = inquilino;
         this.precio = precio;
         this.revisor = revisor;
         this.superficieMinima = superficieMinima;
@@ -41,7 +41,7 @@ public class Propiedad {
         this.accesibilidad = accesibilidad;
         this.direccion = direccion;
         this.propietario = propietario;
-        this.estadoPropiedad = estadoPropiedad;
+        //this.estadoPropiedad = estadoPropiedad;
         this.forma = forma;
         this.precio = precio;
         this.revisor = revisor;
@@ -51,14 +51,14 @@ public class Propiedad {
         this.estado = estado;
     }
 
-    public Propiedad(int id_propiedad, String accesibilidad, String direccion, Propietario propietario, char estadoPropiedad, String forma, Inquilino inquilino, float precio, String revisor, int superficieMinima, String tipoPropiedad, String zona, boolean estado) {
+    public Propiedad(int id_propiedad, String accesibilidad, String direccion, Propietario propietario, char estadoPropiedad, String forma, float precio, String revisor, int superficieMinima, String tipoPropiedad, String zona, boolean estado) {
         this.id_propiedad = id_propiedad;
         this.accesibilidad = accesibilidad;
         this.direccion = direccion;
         this.propietario = propietario;
-        this.estadoPropiedad = estadoPropiedad;
+       // this.estadoPropiedad = estadoPropiedad;
         this.forma = forma;
-        this.inquilino = inquilino;
+        //this.inquilino = inquilino;
         this.precio = precio;
         this.revisor = revisor;
         this.superficieMinima = superficieMinima;
@@ -99,13 +99,9 @@ public class Propiedad {
         this.propietario = propietario;
     }
 
-    public char getEstadoPropiedad() {
-        return estadoPropiedad;
-    }
+    
 
-    public void setEstadoPropiedad(char estadoPropiedad) {
-        this.estadoPropiedad = estadoPropiedad;
-    }
+    
 
     public String getForma() {
         return forma;
@@ -174,7 +170,7 @@ public class Propiedad {
 
     @Override
     public String toString() {
-        return "Propiedad{" + "id_propiedad=" + id_propiedad + ", accesibilidad=" + accesibilidad + ", direccion=" + direccion + ", propietario=" + propietario + ", estadoPropiedad=" + estadoPropiedad + ", forma=" + forma + ", inquilino=" + inquilino + ", precio=" + precio + ", revisor=" + revisor + ", superficieMinima=" + superficieMinima + ", tipoPropiedad=" + tipoPropiedad + ", zona=" + zona + '}';
+        return "Propiedad{" + "id_propiedad=" + id_propiedad + ", accesibilidad=" + accesibilidad + ", direccion=" + direccion + ", propietario=" + propietario + ", forma=" + forma + ", inquilino=" + inquilino + ", precio=" + precio + ", revisor=" + revisor + ", superficieMinima=" + superficieMinima + ", tipoPropiedad=" + tipoPropiedad + ", zona=" + zona + '}';
     }
   
   
