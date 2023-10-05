@@ -199,7 +199,7 @@ public class menuPrincipal extends javax.swing.JFrame {
          escritorio.add(propiedadV);
         escritorio.moveToFront(propiedadV);
         
-        
+        System.out.println("");
         
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
