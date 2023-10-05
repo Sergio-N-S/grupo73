@@ -57,6 +57,16 @@ public class Validaciones {
     }
     
     
+    public static boolean validarDireccion(String ingreso){
+        boolean esDire = false;
+        try{
+            esDire = ingreso.matches("^[a-zA-Z 0-9]+$");
+            
+        }catch(NullPointerException e){
+            System.out.println(e.getMessage());
+        }
+        return esDire;
+    }
     /*
         for(char c : ingreso.toCharArray()){
             if(Character.isDigit(c)){
