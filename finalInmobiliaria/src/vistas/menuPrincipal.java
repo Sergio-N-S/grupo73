@@ -214,12 +214,12 @@ public class menuPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
 
-        escritorio.removeAll();
+        escritorio.removeAll() ;
         escritorio.repaint();
-        //inscripcionVista iv= new inscripcionVista();
-        //iv.setVisible(true);
-        //escritorio.add(iv);
-        //escritorio.moveToFront(iv);
+        contratoVista cv= new contratoVista();
+        cv.setVisible(true);
+        escritorio.add(cv);
+        escritorio.moveToFront(cv);
 
 
     }//GEN-LAST:event_jMenuItem5ActionPerformed
