@@ -6,6 +6,7 @@
 package vistas;
 
 import Entidades.Inquilino;
+import accesoADatos.InquilinoData;
 import java.sql.Connection;
 
 /**
@@ -104,6 +105,11 @@ public class inquilinoVista extends javax.swing.JInternalFrame {
         modificar.setText("Modificar");
 
         eliminar.setText("Eliminar");
+        eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarActionPerformed(evt);
+            }
+        });
 
         salir.setText("Salir");
         salir.addActionListener(new java.awt.event.ActionListener() {
@@ -253,6 +259,25 @@ public class inquilinoVista extends javax.swing.JInternalFrame {
         crearInquilino();
         System.out.println("Inquilino creado");
     }//GEN-LAST:event_guardarActionPerformed
+
+    private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
+        // TODO add your handling code here:
+       int idBorrar=Integer.parseInt(textId.getText());
+        InquilinoData pd=new InquilinoData();
+        pd.eliminarInquilino(idBorrar);
+        
+        textId.setText("");
+        textApe.setText("");
+        textNom.setText("");
+        textDni.setText("");
+        textDetalle.setText("");
+        textTipo.setText("");
+        textTel.setText("");    
+        nuevo.setEnabled(true);
+        modificar.setEnabled(false);
+        guardar.setEnabled(false);
+        eliminar.setEnabled(false); 
+    }//GEN-LAST:event_eliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
