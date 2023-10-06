@@ -3,38 +3,49 @@ package Entidades;
 
 
 public class Inquilino {
+    
+    private int id_Inquilino;
     private String apellido;
-    private char detalle;
-    private int dni;
-    private int id_inquilino;
     private String nombre;
+    private int dni;
+    private char detalle;
     private char tipo;
     private String cuit;
     private String telefono;
     private boolean estado;
 
-    public Inquilino(String apellido, char detalle, int dni, int id_inquilino, String nombre, char tipo, String cuit, String telefono) {
-        this.apellido = apellido;
-        this.detalle = detalle;
-        this.dni = dni;
-        this.id_inquilino = id_inquilino;
-        this.nombre = nombre;
-        this.tipo = tipo;
-        this.cuit = cuit;
-        this.telefono = telefono;
-    }
-
     public Inquilino() {
     }
 
-    public Inquilino(String apellido, char detalle, int dni, String nombre, char tipo, String cuit, String telefono) {
+    public Inquilino(String apellido, String nombre, int dni, char detalle, char tipo, String cuit, String telefono, boolean estado) {
         this.apellido = apellido;
-        this.detalle = detalle;
-        this.dni = dni;
         this.nombre = nombre;
+        this.dni = dni;
+        this.detalle = detalle;
         this.tipo = tipo;
         this.cuit = cuit;
         this.telefono = telefono;
+        this.estado = estado;
+    }
+
+    public Inquilino(int id_Inquilino, String apellido, String nombre, int dni, char detalle, char tipo, String cuit, String telefono, boolean estado) {
+        this.id_Inquilino = id_Inquilino;
+        this.apellido = apellido;
+        this.nombre = nombre;
+        this.dni = dni;
+        this.detalle = detalle;
+        this.tipo = tipo;
+        this.cuit = cuit;
+        this.telefono = telefono;
+        this.estado = estado;
+    }
+
+    public int getId_Inquilino() {
+        return id_Inquilino;
+    }
+
+    public void setId_Inquilino(int id_Inquilino) {
+        this.id_Inquilino = id_Inquilino;
     }
 
     public String getApellido() {
@@ -45,12 +56,12 @@ public class Inquilino {
         this.apellido = apellido;
     }
 
-    public char getDetalle() {
-        return detalle;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setDetalle(char detalle) {
-        this.detalle = detalle;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public int getDni() {
@@ -61,20 +72,12 @@ public class Inquilino {
         this.dni = dni;
     }
 
-    public int getId_inquilino() {
-        return id_inquilino;
+    public char getDetalle() {
+        return detalle;
     }
 
-    public void setId_inquilino(int id_inquilino) {
-        this.id_inquilino = id_inquilino;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setDetalle(char detalle) {
+        this.detalle = detalle;
     }
 
     public char getTipo() {
@@ -101,23 +104,20 @@ public class Inquilino {
         this.telefono = telefono;
     }
 
-    public boolean getEstado() {
+    public boolean isEstado() {
         return estado;
     }
 
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
-    
 
     @Override
     public String toString() {
-        return "Inquilino{" + "apellido=" + apellido + ", detalle=" + detalle + ", dni=" + dni + ", id_inquilino=" + id_inquilino + ", nombre=" + nombre + ", tipo=" + tipo +", cuit="+ cuit+", telefono="+telefono+'}';
+        return  id_Inquilino + " " + apellido + " " + nombre ;
     }
     
     
-    
-    
-    
+            
     
 }

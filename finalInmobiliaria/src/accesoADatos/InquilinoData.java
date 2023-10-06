@@ -42,7 +42,7 @@ public class InquilinoData {
 
             if (rs.next()) {
 
-               inquilino.setId_inquilino(rs.getInt(1));
+               inquilino.setId_Inquilino(rs.getInt(1));
                 JOptionPane.showMessageDialog(null, "inquilino Guardado");
 
             }
@@ -97,7 +97,7 @@ public class InquilinoData {
 
             if (rs.next()) {
                 inquilino = new Inquilino();
-                inquilino.setId_inquilino(id);
+                inquilino.setId_Inquilino(id);
                 inquilino.setApellido(rs.getString("apellido"));
                 inquilino.setNombre(rs.getString("nombre"));
                 inquilino.setDni(rs.getInt("DNI"));
@@ -138,7 +138,7 @@ public class InquilinoData {
                Inquilino inquilino;
                
                 inquilino = new Inquilino();
-                inquilino.setId_inquilino(rs.getInt("id_Inquilino"));
+                inquilino.setId_Inquilino(rs.getInt("id_Inquilino"));
                 inquilino.setApellido(rs.getString("apellido"));
                 inquilino.setNombre(rs.getString("nombre"));
                 inquilino.setDni(rs.getInt("DNI"));

@@ -5,6 +5,9 @@
  */
 package vistas;
 
+import Entidades.Inquilino;
+import java.sql.Connection;
+
 /**
  *
  * @author ULP
@@ -16,7 +19,13 @@ public class inquilinoVista extends javax.swing.JInternalFrame {
      */
     public inquilinoVista() {
         initComponents();
+        modificar.setEnabled(false);
+        guardar.setEnabled(false);
+        eliminar.setEnabled(false);
     }
+    
+    private Connection con;
+        Inquilino inquilino1;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -70,11 +79,27 @@ public class inquilinoVista extends javax.swing.JInternalFrame {
 
         jLabel9.setText("Telefono");
 
+        textId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textIdActionPerformed(evt);
+            }
+        });
+
         buscar.setText("Buscar");
 
         nuevo.setText("Nuevo");
+        nuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuevoActionPerformed(evt);
+            }
+        });
 
         guardar.setText("Guardar");
+        guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarActionPerformed(evt);
+            }
+        });
 
         modificar.setText("Modificar");
 
@@ -202,6 +227,33 @@ public class inquilinoVista extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_salirActionPerformed
 
+    private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
+        // TODO add your handling code here:
+        buscar.setEnabled(false);
+        modificar.setEnabled(false);
+        eliminar.setEnabled(false);
+        guardar.setEnabled(true);
+        textId.setText("");
+        textApe.setText("");
+        textNom.setText("");
+        textDni.setText("");
+        textDetalle.setText("");
+        textTipo.setText("");
+        textCuit.setText("");
+        textTel.setText("");
+        textApe.requestFocus();
+    }//GEN-LAST:event_nuevoActionPerformed
+
+    private void textIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textIdActionPerformed
+
+    private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
+        // TODO add your handling code here:
+        crearInquilino();
+        System.out.println("Inquilino creado");
+    }//GEN-LAST:event_guardarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buscar;
@@ -228,4 +280,22 @@ public class inquilinoVista extends javax.swing.JInternalFrame {
     private javax.swing.JTextField textTel;
     private javax.swing.JTextField textTipo;
     // End of variables declaration//GEN-END:variables
+
+    public Inquilino crearInquilino() {
+         
+        String apellido=textApe.getText();
+        String nombre=textNom.getText();
+        int dni=Integer.parseInt(textDni.getText());
+        String detalle = textDetalle.getText();
+        char deta = detalle.charAt(0);
+        String tipo = textTipo.getText();
+        char tipo1 = tipo.charAt(0);
+        String cuit = textCuit.getText();
+        String telefono=textTel.getText();
+        boolean estado = true;
+                
+        inquilino1= new Inquilino(apellido, nombre, dni, deta, tipo1, cuit, telefono, estado);
+        System.out.println(inquilino1);
+        return inquilino1;
+    }
 }

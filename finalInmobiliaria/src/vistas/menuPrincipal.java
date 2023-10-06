@@ -23,9 +23,9 @@ public class menuPrincipal extends javax.swing.JFrame {
         con = miConexion.getConexion();
     }
 
-    
-     private Connection con;
-     miConexion Conexion =new miConexion();
+    private Connection con;
+    miConexion Conexion = new miConexion();
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,6 +45,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
@@ -111,6 +112,15 @@ public class menuPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu6.setText("Inquilino");
+
+        jMenuItem4.setText("Formulario Inquilino");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem4);
+
         jMenuBar1.add(jMenu6);
 
         jMenu3.setText("Alquiler");
@@ -170,82 +180,86 @@ public class menuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
-       
-   
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenu1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        escritorio.removeAll() ;
+        escritorio.removeAll();
         escritorio.repaint();
         //alumnosVista av= new alumnosVista();
-       // av.setVisible(true);
-       propietarioVista pv=new propietarioVista();
-       pv.setVisible(true);
+        // av.setVisible(true);
+        propietarioVista pv = new propietarioVista();
+        pv.setVisible(true);
         escritorio.add(pv);
         escritorio.moveToFront(pv);
-               
+
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-       escritorio.removeAll() ;
+        escritorio.removeAll();
         escritorio.repaint();
         //materiaVista mv= new materiaVista();
         //mv.setVisible(true);
         //escritorio.add(mv);
         //escritorio.moveToFront(mv);
-         propiedadVista propiedadV=new propiedadVista();
+        propiedadVista propiedadV = new propiedadVista();
         propiedadV.setVisible(true);
-         escritorio.add(propiedadV);
+        escritorio.add(propiedadV);
         escritorio.moveToFront(propiedadV);
-        
+
         System.out.println("");
-        
+
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
 
-        escritorio.removeAll() ;
+        escritorio.removeAll();
         escritorio.repaint();
         //inscripcionVista iv= new inscripcionVista();
         //iv.setVisible(true);
         //escritorio.add(iv);
         //escritorio.moveToFront(iv);
-        
-
 
 
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        escritorio.removeAll() ;
+        escritorio.removeAll();
         escritorio.repaint();
         //consultaVista cv= new consultaVista();
         //cv.setVisible(true);
-       // escritorio.add(cv);
-       // escritorio.moveToFront(cv);
-        
-        
-        
-        
-        
-        
+        // escritorio.add(cv);
+        // escritorio.moveToFront(cv);
+
+
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5ActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jMenu5ActionPerformed
 
     private void jMenu5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseExited
         // TODO add your handling code here:
-       // System.exit(0);
+        // System.exit(0);
     }//GEN-LAST:event_jMenu5MouseExited
 
     private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jMenu5MouseClicked
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+        escritorio.removeAll();
+        escritorio.repaint();
+        inquilinoVista iv = new inquilinoVista();
+        iv.setVisible(true);
+        escritorio.add(iv);
+        escritorio.moveToFront(iv);
+
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -296,8 +310,9 @@ public class menuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     // End of variables declaration//GEN-END:variables
-        }
+}
