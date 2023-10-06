@@ -331,6 +331,16 @@ public class inquilinoVista extends javax.swing.JInternalFrame {
         inq.setApellido(textApe.getText());
         inq.setNombre(textNom.getText());
         inq.setDni(Integer.parseInt(textDni.getText()));
+        
+        
+        //en una variable tipo String guardas lo del textbox y despues a una variable char con el metodo charat
+        
+        String deta=textDetalle.getText();
+        char deta1=deta.charAt(0);
+        String ti=textTipo.getText();
+        char tipo1=ti.charAt(0);
+        inq.setDetalle(deta1);
+        inq.setTipo(tipo1);
         inq.setCuit(textCuit.getText());
         inq.setTelefono(textTel.getText());
         inq.setEstado(true);
