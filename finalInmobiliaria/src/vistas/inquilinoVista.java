@@ -109,6 +109,11 @@ public class inquilinoVista extends javax.swing.JInternalFrame {
         });
 
         modificar.setText("Modificar");
+        modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificarActionPerformed(evt);
+            }
+        });
 
         eliminar.setText("Eliminar");
         eliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -318,6 +323,35 @@ public class inquilinoVista extends javax.swing.JInternalFrame {
         guardar.setEnabled(false);
         // TODO add your handling code here:
     }//GEN-LAST:event_buscarActionPerformed
+
+    private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
+        Inquilino inq = new Inquilino();
+        InquilinoData id = new InquilinoData();
+        inq.setId_Inquilino(Integer.parseInt(textId.getText()));
+        inq.setApellido(textApe.getText());
+        inq.setNombre(textNom.getText());
+        inq.setDni(Integer.parseInt(textDni.getText()));
+        inq.setCuit(textCuit.getText());
+        inq.setTelefono(textTel.getText());
+        inq.setEstado(true);
+
+        id.modificarInquilino(inq);
+
+        textId.setText("");
+        textApe.setText("");
+        textNom.setText("");
+        textDni.setText("");
+        textDetalle.setText("");
+        textTipo.setText("");
+        textCuit.setText("");
+        textTel.setText("");
+        
+        nuevo.setEnabled(false);
+        modificar.setEnabled(true);
+        guardar.setEnabled(false);
+        eliminar.setEnabled(false);
+// TODO add your handling code here:
+    }//GEN-LAST:event_modificarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
