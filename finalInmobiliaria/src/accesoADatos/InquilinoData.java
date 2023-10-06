@@ -88,7 +88,7 @@ public class InquilinoData {
         Inquilino inquilino=null;
         
          
-        String sql = "SELECT apellido, nombre, DNI, domicilio, telefono FROM inquilino WHERE id_Inquilino = ? AND estado = 1";
+        String sql = "SELECT apellido, nombre, DNI, detalle, tipo, cuit, telefono FROM inquilino WHERE id_Inquilino = ? AND estado = 1";
         PreparedStatement ps = null;
         try {
             ps = con.prepareStatement(sql);

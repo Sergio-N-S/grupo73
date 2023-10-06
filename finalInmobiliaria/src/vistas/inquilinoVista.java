@@ -8,6 +8,7 @@ package vistas;
 import Entidades.Inquilino;
 import accesoADatos.InquilinoData;
 import java.sql.Connection;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,9 +25,9 @@ public class inquilinoVista extends javax.swing.JInternalFrame {
         guardar.setEnabled(false);
         eliminar.setEnabled(false);
     }
-    
+
     private Connection con;
-        Inquilino inquilino1;
+    Inquilino inquilino1;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -87,6 +88,11 @@ public class inquilinoVista extends javax.swing.JInternalFrame {
         });
 
         buscar.setText("Buscar");
+        buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarActionPerformed(evt);
+            }
+        });
 
         nuevo.setText("Nuevo");
         nuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -228,7 +234,7 @@ public class inquilinoVista extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
-            this.dispose();
+        this.dispose();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_salirActionPerformed
@@ -258,26 +264,60 @@ public class inquilinoVista extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         crearInquilino();
         System.out.println("Inquilino creado");
+        InquilinoData idata = new InquilinoData();
+        idata.guardarInquilino(inquilino1);
     }//GEN-LAST:event_guardarActionPerformed
 
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
         // TODO add your handling code here:
-       int idBorrar=Integer.parseInt(textId.getText());
-        InquilinoData pd=new InquilinoData();
+        int idBorrar = Integer.parseInt(textId.getText());
+        InquilinoData pd = new InquilinoData();
         pd.eliminarInquilino(idBorrar);
-        
+
         textId.setText("");
         textApe.setText("");
         textNom.setText("");
         textDni.setText("");
         textDetalle.setText("");
         textTipo.setText("");
-        textTel.setText("");    
+        textTel.setText("");
         nuevo.setEnabled(true);
         modificar.setEnabled(false);
         guardar.setEnabled(false);
-        eliminar.setEnabled(false); 
+        eliminar.setEnabled(false);
     }//GEN-LAST:event_eliminarActionPerformed
+
+    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
+        guardar.setEnabled(false);
+
+        String opciones = (JOptionPane.showInputDialog(null, "seleccione una opcion", "Buscar", JOptionPane.QUESTION_MESSAGE, null,
+                new Object[]{"Buscar por id"}, "seleccion")).toString();
+
+        switch (opciones) {
+
+            case "Buscar por id":
+                String id = JOptionPane.showInputDialog("Ingrese el id");
+
+                int miId = Integer.parseInt(id);
+                InquilinoData pd = new InquilinoData();
+                inquilino1 = pd.buscarInquilinoPorID(miId);
+                textId.setText(id);
+                textApe.setText(inquilino1.getApellido());
+                textNom.setText(inquilino1.getNombre()); //alumno1.getApellido());
+                textDni.setText(String.valueOf(inquilino1.getDni()));
+                textDetalle.setText(String.valueOf(inquilino1.getDetalle()));
+                textTipo.setText(String.valueOf(inquilino1.getTipo()));
+                textCuit.setText(inquilino1.getCuit());
+                textTel.setText(inquilino1.getTelefono());
+                break;
+        }
+
+        modificar.setEnabled(true);
+        eliminar.setEnabled(true);
+        nuevo.setEnabled(true);
+        guardar.setEnabled(false);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -307,19 +347,19 @@ public class inquilinoVista extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     public Inquilino crearInquilino() {
-         
-        String apellido=textApe.getText();
-        String nombre=textNom.getText();
-        int dni=Integer.parseInt(textDni.getText());
+
+        String apellido = textApe.getText();
+        String nombre = textNom.getText();
+        int dni = Integer.parseInt(textDni.getText());
         String detalle = textDetalle.getText();
         char deta = detalle.charAt(0);
         String tipo = textTipo.getText();
         char tipo1 = tipo.charAt(0);
         String cuit = textCuit.getText();
-        String telefono=textTel.getText();
+        String telefono = textTel.getText();
         boolean estado = true;
-                
-        inquilino1= new Inquilino(apellido, nombre, dni, deta, tipo1, cuit, telefono, estado);
+
+        inquilino1 = new Inquilino(apellido, nombre, dni, deta, tipo1, cuit, telefono, estado);
         System.out.println(inquilino1);
         return inquilino1;
     }
