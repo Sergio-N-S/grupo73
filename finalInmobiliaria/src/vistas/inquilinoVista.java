@@ -340,8 +340,8 @@ public class inquilinoVista extends javax.swing.JInternalFrame {
         textCuit.setText("");
         textTel.setText("");
         
-        nuevo.setEnabled(false);
-        modificar.setEnabled(true);
+        nuevo.setEnabled(true);
+        modificar.setEnabled(false);
         guardar.setEnabled(false);
         eliminar.setEnabled(false);
 // TODO add your handling code here:
@@ -376,6 +376,7 @@ public class inquilinoVista extends javax.swing.JInternalFrame {
 
     public Inquilino crearInquilino() {
 
+        
         String apellido = textApe.getText();
         String nombre = textNom.getText();
         int dni = Integer.parseInt(textDni.getText());
