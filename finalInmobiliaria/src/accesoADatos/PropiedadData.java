@@ -63,14 +63,14 @@ public class PropiedadData {
     
     public void modificarPropiedad(Propiedad propiedad) {
 
-        String sql = "UPDATE `propiedadinmueble` SET `id_Propietario`=?,`accesibilidad`=?,`direccion`=?,`forma`=?,`precioTazado`=? ,`revisor`=? ,`superficieMinima`=?,`tipoDeLocal`=?,`zona`=? WHERE id_Propiedad=?";
+        String sql = "UPDATE `propiedadinmueble` SET `accesibilidad`=?,`direccion`=?,`id_Propietario`=?,`forma`=?,`precioTazado`=? ,`revisor`=? ,`superficieMinima`=?,`tipoDeLocal`=?,`zona`=? WHERE id_Propiedad=?";
         PreparedStatement ps = null;
 
         try {
             ps = con.prepareStatement(sql);
-            ps.setInt(1, propiedad.getPropietario().getId_propietario());  
-            ps.setString(2, propiedad.getAccesibilidad());
-            ps.setString(3, propiedad.getDireccion());
+            ps.setString(1, propiedad.getAccesibilidad());
+            ps.setString(2, propiedad.getDireccion());
+            ps.setInt(3, propiedad.getPropietario().getId_propietario());  
             ps.setString(4, propiedad.getForma());
             ps.setFloat(5, propiedad.getPrecio());
             ps.setString(6,propiedad.getRevisor());
