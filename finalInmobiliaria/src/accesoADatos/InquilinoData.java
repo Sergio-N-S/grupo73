@@ -69,17 +69,18 @@ public class InquilinoData {
             ps.setString(5,String.valueOf(inquilino.getTipo()));
             ps.setString(6, inquilino.getCuit());
             ps.setString(7, inquilino.getTelefono());
+            ps.setInt(8, inquilino.getId_Inquilino());
             
             int exito = ps.executeUpdate();
 
             if (exito == 1) {
-                JOptionPane.showMessageDialog(null, "Propietario Modificado Exitosamente.");
+                JOptionPane.showMessageDialog(null, "Inquilino Modificado Exitosamente.");
             } else {
-                JOptionPane.showMessageDialog(null, "El Propietario no existe");
+                JOptionPane.showMessageDialog(null, "El Inquilino no existe");
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Propietario " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inquilino " + ex.getMessage());
         }
 
     }
