@@ -3,6 +3,7 @@ package vistas;
 
 import Entidades.Propiedad;
 import Entidades.Propietario;
+import accesoADatos.PropiedadData;
 import accesoADatos.PropietarioData;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public class propiedadVista extends javax.swing.JInternalFrame {
     }
 private Connection con;
     Propietario propietarioSelect;
+    Propiedad propiedad1;
    int idProSelect;
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -246,9 +248,12 @@ private Connection con;
 //       int superf=Integer.parseInt(textSuper.getText());
        
        crearPropiedad();
+       PropiedadData pd = new PropiedadData();
+       pd.guardarPropiedad(propiedad1);
+       
        // Propiedad propiedad1=new Propiedad(textAcce.getText(),textDire.getText(),propietarioSelect,textForma.getText(),prec,textRevisor.getText(),superf,textTipo.getText(),textZona.getText(),true);
         
-       // System.out.println(propiedad1);
+        //System.out.println(propiedad1);
         
 
         // TODO add your handling code here:
@@ -310,7 +315,7 @@ public void llenarCombo() {
         String zona = textZona.getText();
         boolean estado = true;
 
-        Propiedad propiedad1 = new Propiedad (acceso, direcion, propietarioSelect, forma, precio, revisor, superficieMinima, tipoPropiedad, zona, true);
+        propiedad1 = new Propiedad (acceso, direcion, propietarioSelect, forma, precio, revisor, superficieMinima, tipoPropiedad, zona, estado);
         System.out.println(propiedad1);
         return propiedad1;
     }

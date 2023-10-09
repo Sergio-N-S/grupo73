@@ -27,20 +27,20 @@ public class PropiedadData {
     
     public void guardarPropiedad(Propiedad propiedad) {
 
-        String sql = " INSERT INTO `propiedadinmueble`(`id_Propietario`, `accesibilidad`, `direccion`, `forma`, `precioTazado`, `revisor`, `superficieMinima`, `tipoDeLocal`, `zona`, `estado`)VALUES (?,?,?,?,?,?,?,?,?,?)";
+        String sql = " INSERT INTO `propiedadinmueble`( `accesibilidad`, `direccion`, id_Propietario, `forma`, `precioTazado`, `revisor`, `superficieMinima`, `tipoDeLocal`, `zona`, `estado`)VALUES (?,?,?,?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, propiedad.getPropietario().getId_propietario());  
-            ps.setString(2, propiedad.getAccesibilidad());
-            ps.setString(3, propiedad.getDireccion());
+            ps.setString(1, propiedad.getAccesibilidad());
+            ps.setString(2, propiedad.getDireccion());
+            ps.setInt(3, propiedad.getPropietario().getId_propietario());  
             ps.setString(4, propiedad.getForma());
             ps.setFloat(5, propiedad.getPrecio());
             ps.setString(6,propiedad.getRevisor());
             ps.setInt(7,propiedad.getSuperficieMinima());
             ps.setString(8,propiedad.getTipoPropiedad());
             ps.setString(9,propiedad.getZona());
-            ps.setString(10,null);
+            ps.setBoolean(10,propiedad.isEstado());
             
             
             ps.executeUpdate();
