@@ -92,9 +92,9 @@ public class PropiedadData {
 
     }
      
-      public Propiedad buscarPropiedadPorID(int id) {
+     public Propiedad buscarPropiedadPorID(int id) {
         Propiedad propiedad = null;
-        String sql = "SELECT id_propietario,accesibilidad,direccion,forma,precioTazado,revisor,superficieMinima,tipoDeLocal,zona FROM propiedad WHERE id_Propiedad = ? AND estado = 1";
+        String sql = "SELECT id_propietario,accesibilidad,direccion,forma,precioTazado,revisor,superficieMinima,tipoDeLocal,zona FROM propiedadinmueble WHERE id_Propiedad = ? AND estado = 1";
         PreparedStatement ps = null;
         try {
             ps = con.prepareStatement(sql);
