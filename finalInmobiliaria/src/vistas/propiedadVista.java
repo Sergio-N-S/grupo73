@@ -15,7 +15,7 @@ public class propiedadVista extends javax.swing.JInternalFrame {
    
     public propiedadVista() {
         initComponents();
-        llenarCombo();
+       
         textPropie.setVisible(false);
         botonSi.setVisible(false);
         labelDesea.setVisible(false);
@@ -315,7 +315,8 @@ private Connection con;
     }//GEN-LAST:event_guardarActionPerformed
 
     private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
-       textId.setText("");
+        llenarCombo();
+        textId.setText("");
        textAcce.setText("");
        textDire.setText("");
        textForma.setText("");
@@ -346,6 +347,7 @@ String opciones = (JOptionPane.showInputDialog(null, "seleccione una opcion", "B
                 textId.setText(id);
                 textAcce.setText(propie1.getAccesibilidad());
                 textPropie.setVisible(true);
+                // aca quiero agregar el dato de la base
                 textPropie.setText(propie1.getPropietario().toString());
                 comboPropietario.setVisible(false);
                 textForma.setText(propie1.getForma());
@@ -376,7 +378,7 @@ String opciones = (JOptionPane.showInputDialog(null, "seleccione una opcion", "B
         textPropie.setVisible(false);
         comboPropietario.setVisible(true);
         si=true;
-        
+        llenarCombo();
         // TODO add your handling code here:
     }//GEN-LAST:event_botonSiActionPerformed
 
