@@ -16,7 +16,7 @@ public class propiedadVista extends javax.swing.JInternalFrame {
    
     public propiedadVista() {
         initComponents();
-       
+       llenarCombo();
       
        
     }
@@ -283,7 +283,7 @@ private Connection con;
     }//GEN-LAST:event_guardarActionPerformed
 
     private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
-        llenarCombo();
+//        llenarCombo();
         textId.setText("");
        textAcce.setText("");
        textDire.setText("");
@@ -300,7 +300,7 @@ private Connection con;
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
 
          guardar.setEnabled(false);
-        llenarCombo();
+//        llenarCombo();
 String opciones = (JOptionPane.showInputDialog(null, "seleccione una opcion", "Buscar", JOptionPane.QUESTION_MESSAGE, null,
                 new Object[]{"Buscar por id"}, "seleccion")).toString();
 
