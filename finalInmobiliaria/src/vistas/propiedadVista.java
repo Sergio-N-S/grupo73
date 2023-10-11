@@ -1,4 +1,3 @@
-
 package vistas;
 
 import Entidades.Propiedad;
@@ -13,18 +12,17 @@ import javax.swing.JOptionPane;
 
 public class propiedadVista extends javax.swing.JInternalFrame {
 
-   
     public propiedadVista() {
         initComponents();
-       llenarCombo();
-      
-       
+        llenarCombo();
+
     }
-private Connection con;
+    private Connection con;
     Propietario propietarioSelect;
     Propiedad propiedad1;
     int idProSelect;
     private boolean si;
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -254,77 +252,81 @@ private Connection con;
     }//GEN-LAST:event_salirActionPerformed
 
     private void comboPropietarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPropietarioActionPerformed
-        propietarioSelect=(Propietario) comboPropietario.getSelectedItem();
-        idProSelect=propietarioSelect.getId_propietario();
+        propietarioSelect = (Propietario) comboPropietario.getSelectedItem();
+        idProSelect = propietarioSelect.getId_propietario();
         System.out.println(idProSelect);
-        
 
         // TODO add your handling code here:
     }//GEN-LAST:event_comboPropietarioActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
-            
-       crearPropiedad();
-       PropiedadData pd = new PropiedadData();
-       pd.guardarPropiedad(propiedad1);
-       textAcce.setText("");
-       textDire.setText("");
-       textForma.setText("");
-       textPrecio.setText("");
-       textRevisor.setText("");
-       textSuper.setText("");
-       textTipo.setText("");
-       textZona.setText("");
-       
-       modificar.setEnabled(false);
-       eliminar.setEnabled(false);
-       guardar.setEnabled(false);
-      
+
+        crearPropiedad();
+        PropiedadData pd = new PropiedadData();
+        pd.guardarPropiedad(propiedad1);
+        textAcce.setText("");
+        textDire.setText("");
+        textForma.setText("");
+        textPrecio.setText("");
+        textRevisor.setText("");
+        textSuper.setText("");
+        textTipo.setText("");
+        textZona.setText("");
+
+        modificar.setEnabled(false);
+        eliminar.setEnabled(false);
+        guardar.setEnabled(false);
+
     }//GEN-LAST:event_guardarActionPerformed
 
     private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
 //        llenarCombo();
         textId.setText("");
-       textAcce.setText("");
-       textDire.setText("");
-       textForma.setText("");
-       textPrecio.setText("");
-       textRevisor.setText("");
-       textSuper.setText("");
-       textTipo.setText("");
-       textZona.setText("");
-       textAcce.requestFocus();
+        textAcce.setText("");
+        textDire.setText("");
+        textForma.setText("");
+        textPrecio.setText("");
+        textRevisor.setText("");
+        textSuper.setText("");
+        textTipo.setText("");
+        textZona.setText("");
+        textAcce.requestFocus();
         // TODO add your handling code here:
+        buscar.setVisible(false);
+        modificar.setVisible(false);
+        eliminar.setVisible(false);
+        guardar.setVisible(true);
     }//GEN-LAST:event_nuevoActionPerformed
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
 
-         guardar.setEnabled(false);
+        guardar.setEnabled(false);
 //        llenarCombo();
-String opciones = (JOptionPane.showInputDialog(null, "seleccione una opcion", "Buscar", JOptionPane.QUESTION_MESSAGE, null,
+        String opciones = (JOptionPane.showInputDialog(null, "seleccione una opcion", "Buscar", JOptionPane.QUESTION_MESSAGE, null,
                 new Object[]{"Buscar por id"}, "seleccion")).toString();
 
         switch (opciones) {
-            
+
             case "Buscar por id":
                 String id = JOptionPane.showInputDialog("Ingrese el id");
-              
+
                 int miId = Integer.parseInt(id);
                 PropiedadData pd = new PropiedadData();
-                Propiedad propie1=pd.buscarPropiedadPorID(miId);
+                Propiedad propie1 = pd.buscarPropiedadPorID(miId);
                 //for para recorrer la lista
 
-               // Propietario modelo= comboPropietario.
+                // Propietario modelo= comboPropietario.
                 DefaultComboBoxModel<Propietario> model = (DefaultComboBoxModel<Propietario>) comboPropietario.getModel();
-                int contador=model.getSize();
-                for( int i=0; i<contador; i++){
-                  Propietario p= model.getElementAt(i);
-                    if(propie1.getPropietario().getId_propietario()==p.getId_propietario()){
+                int contador = model.getSize();
+                for (int i = 0; i < contador; i++) {
+                    Propietario p = model.getElementAt(i);
+                    if (propie1.getPropietario().getId_propietario() == p.getId_propietario()) {
                         comboPropietario.setSelectedIndex(i);
                     }
                 }
                 textId.setText(id);
                 textAcce.setText(propie1.getAccesibilidad());
+                textDire.setText(propie1.getDireccion());
                 //textPropie.setVisible(true);
                 // aca quiero agregar el dato de la base
                 //textPropie.setText(propie1.getPropietario().toString());
@@ -335,7 +337,6 @@ String opciones = (JOptionPane.showInputDialog(null, "seleccione una opcion", "B
                 textSuper.setText(String.valueOf(propie1.getSuperficieMinima()));
                 textTipo.setText(propie1.getTipoPropiedad());
                 textZona.setText(propie1.getZona());
-                
 
                 break;
         }
@@ -344,32 +345,44 @@ String opciones = (JOptionPane.showInputDialog(null, "seleccione una opcion", "B
         eliminar.setEnabled(true);
         nuevo.setEnabled(true);
         guardar.setEnabled(false);
-       
 
         // TODO add your handling code here:
-
-
         // TODO add your handling code here:
     }//GEN-LAST:event_buscarActionPerformed
 
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
-/*
-        Propiedad propie1=new Propiedad();
-        PropiedadData pd=new PropiedadData();
+
+        Propiedad propie1 = new Propiedad();
+        PropiedadData pd = new PropiedadData();
         propie1.setId_propiedad(Integer.parseInt(textId.getText()));
-       
-        p1.setDni(Integer.parseInt(textDNI.getText()));
-        p1.setApellido(textApe.getText());
-        p1.setNombre(textNom.getText());
-        p1.setDomicilio(textDomi.getText());
-        p1.setTelefono(textTele.getText());
-        p1.setEstado(true);
-               
-        pd.modificarPropietario(p1);
-        
-        if
-*/
+        propie1.setPropietario(propietarioSelect);
+        propie1.setAccesibilidad(textAcce.getText());
+        propie1.setDireccion(textDire.getText());
+        propie1.setForma(textForma.getText());
+        propie1.setPrecio(Float.parseFloat(textPrecio.getText()));
+        propie1.setRevisor(textRevisor.getText());
+        propie1.setSuperficieMinima(Integer.parseInt(textSuper.getText()));
+        propie1.setTipoPropiedad(textTipo.getText());
+        propie1.setZona(textZona.getText());
+
+
+        pd.modificarPropiedad(propie1);
+
         // TODO add your handling code here:
+        textId.setText("");
+        textAcce.setText("");
+        textDire.setText("");
+        textForma.setText("");
+        textPrecio.setText("");
+        textRevisor.setText("");
+        textSuper.setText("");
+        textTipo.setText("");
+        textZona.setText("");
+        
+        nuevo.setEnabled(true);
+        modificar.setEnabled(false);
+        guardar.setEnabled(false);
+        eliminar.setEnabled(false);
     }//GEN-LAST:event_modificarActionPerformed
 
 
@@ -403,7 +416,7 @@ String opciones = (JOptionPane.showInputDialog(null, "seleccione una opcion", "B
     private javax.swing.JTextField textZona;
     // End of variables declaration//GEN-END:variables
 
-public void llenarCombo() {
+    public void llenarCombo() {
         List<Propietario> propietarios = new ArrayList<>();
 
         PropietarioData pd = new PropietarioData();
@@ -411,13 +424,12 @@ public void llenarCombo() {
 
         for (Propietario p1 : propietarios) {
             comboPropietario.addItem(p1);
-            
+
         }
     }
 
-     public Propiedad crearPropiedad() {
+    public Propiedad crearPropiedad() {
 
-        
         String acceso = textAcce.getText();
         String direcion = textDire.getText();
         String forma = textForma.getText();
@@ -428,7 +440,7 @@ public void llenarCombo() {
         String zona = textZona.getText();
         boolean estado = true;
 
-        propiedad1 = new Propiedad (acceso, direcion, propietarioSelect, forma, precio, revisor, superficieMinima, tipoPropiedad, zona, estado);
+        propiedad1 = new Propiedad(acceso, direcion, propietarioSelect, forma, precio, revisor, superficieMinima, tipoPropiedad, zona, estado);
         System.out.println(propiedad1);
         return propiedad1;
     }
