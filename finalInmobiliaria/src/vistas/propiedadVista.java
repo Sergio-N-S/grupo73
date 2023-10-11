@@ -15,6 +15,9 @@ public class propiedadVista extends javax.swing.JInternalFrame {
     public propiedadVista() {
         initComponents();
         llenarCombo();
+        guardar.setEnabled(false);
+        modificar.setEnabled(false);
+        eliminar.setEnabled(false);
 
     }
     private Connection con;
@@ -115,6 +118,11 @@ public class propiedadVista extends javax.swing.JInternalFrame {
         });
 
         eliminar.setText("Eliminar");
+        eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarActionPerformed(evt);
+            }
+        });
 
         salir.setText("Salir");
         salir.addActionListener(new java.awt.event.ActionListener() {
@@ -139,51 +147,47 @@ public class propiedadVista extends javax.swing.JInternalFrame {
                 .addGap(27, 27, 27)
                 .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 23, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(243, 243, 243)
-                            .addComponent(jLabel1))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(20, 20, 20)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel11)
-                                .addComponent(jLabel10)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(44, 44, 44)
-                            .addComponent(jLabel12)))
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(37, 37, 37)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel4)
-                        .addComponent(jLabel3)
-                        .addComponent(jLabel5)
-                        .addComponent(jLabel7)
-                        .addComponent(jLabel8)
-                        .addComponent(jLabel9))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(textAcce, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(textId, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(textDire, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(textPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(textRevisor, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(textSuper, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(textTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(comboPropietario, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textForma, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGap(14, 14, 14)
-                            .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(textZona, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(243, 243, 243)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel10)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(jLabel12))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(textAcce, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textId, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textDire, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textRevisor, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textSuper, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(comboPropietario, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(textForma, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(14, 14, 14)
+                                .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(textZona, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,7 +252,7 @@ public class propiedadVista extends javax.swing.JInternalFrame {
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
         this.dispose();
 
-        // TODO add your handling code here:
+      
     }//GEN-LAST:event_salirActionPerformed
 
     private void comboPropietarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPropietarioActionPerformed
@@ -256,7 +260,7 @@ public class propiedadVista extends javax.swing.JInternalFrame {
         idProSelect = propietarioSelect.getId_propietario();
         System.out.println(idProSelect);
 
-        // TODO add your handling code here:
+      
     }//GEN-LAST:event_comboPropietarioActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
@@ -276,11 +280,11 @@ public class propiedadVista extends javax.swing.JInternalFrame {
         modificar.setEnabled(false);
         eliminar.setEnabled(false);
         guardar.setEnabled(false);
-
+        buscar.setEnabled(true);
     }//GEN-LAST:event_guardarActionPerformed
 
     private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
-//        llenarCombo();
+
         textId.setText("");
         textAcce.setText("");
         textDire.setText("");
@@ -292,30 +296,28 @@ public class propiedadVista extends javax.swing.JInternalFrame {
         textZona.setText("");
         textAcce.requestFocus();
         // TODO add your handling code here:
-        buscar.setVisible(false);
-        modificar.setVisible(false);
-        eliminar.setVisible(false);
-        guardar.setVisible(true);
+        buscar.setEnabled(false);
+        modificar.setEnabled(false);
+        eliminar.setEnabled(false);
+        guardar.setEnabled(true);
     }//GEN-LAST:event_nuevoActionPerformed
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
 
         guardar.setEnabled(false);
-//        llenarCombo();
+
         String opciones = (JOptionPane.showInputDialog(null, "seleccione una opcion", "Buscar", JOptionPane.QUESTION_MESSAGE, null,
-                new Object[]{"Buscar por id"}, "seleccion")).toString();
+                new Object[]{"Buscar por Legajo"}, "seleccion")).toString();
 
         switch (opciones) {
 
-            case "Buscar por id":
+            case "Buscar por Legajo":
                 String id = JOptionPane.showInputDialog("Ingrese el id");
 
                 int miId = Integer.parseInt(id);
                 PropiedadData pd = new PropiedadData();
                 Propiedad propie1 = pd.buscarPropiedadPorID(miId);
-                //for para recorrer la lista
-
-                // Propietario modelo= comboPropietario.
+                
                 DefaultComboBoxModel<Propietario> model = (DefaultComboBoxModel<Propietario>) comboPropietario.getModel();
                 int contador = model.getSize();
                 for (int i = 0; i < contador; i++) {
@@ -327,10 +329,6 @@ public class propiedadVista extends javax.swing.JInternalFrame {
                 textId.setText(id);
                 textAcce.setText(propie1.getAccesibilidad());
                 textDire.setText(propie1.getDireccion());
-                //textPropie.setVisible(true);
-                // aca quiero agregar el dato de la base
-                //textPropie.setText(propie1.getPropietario().toString());
-                //comboPropietario.setVisible(false);
                 textForma.setText(propie1.getForma());
                 textPrecio.setText(String.valueOf(propie1.getPrecio()));
                 textRevisor.setText(propie1.getRevisor());
@@ -384,6 +382,30 @@ public class propiedadVista extends javax.swing.JInternalFrame {
         guardar.setEnabled(false);
         eliminar.setEnabled(false);
     }//GEN-LAST:event_modificarActionPerformed
+
+    private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
+
+ int idBorrar=Integer.parseInt(textId.getText());
+        PropiedadData pd=new PropiedadData();
+        pd.eliminarPropiedad(idBorrar);
+        
+        textId.setText("");
+        textAcce.setText("");
+        textDire.setText("");
+        textForma.setText("");
+        textPrecio.setText("");
+        textRevisor.setText("");
+        textSuper.setText("");
+        textTipo.setText("");
+        textZona.setText("");  
+        nuevo.setEnabled(true);
+        modificar.setEnabled(false);
+        guardar.setEnabled(false);
+        eliminar.setEnabled(false);
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
