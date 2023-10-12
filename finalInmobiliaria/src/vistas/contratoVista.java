@@ -5,12 +5,18 @@
  */
 package vistas;
 
+import Entidades.Contrato;
 import Entidades.Inquilino;
 import Entidades.Propiedad;
+import accesoADatos.InquilinoData;
+import accesoADatos.PropiedadData;
+import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -24,6 +30,17 @@ public class contratoVista extends javax.swing.JInternalFrame {
     public contratoVista() {
         initComponents();
     }
+    private Connection con;
+    private Inquilino inquilinoSelec;
+    private int idInquilinoSelec;
+    private Propiedad propiedadSelec;
+    private int idPropiedSelec;
+    private Date fechaHoy;
+    private String fechaFormateadaInicio;
+    private String fechaFormateadaFinal;
+    private Contrato contrato1;
+    private Date fecha1;
+    private Date fecha2;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -94,11 +111,28 @@ public class contratoVista extends javax.swing.JInternalFrame {
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel13.setText("Contrato");
 
+        comboInquilino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboInquilinoActionPerformed(evt);
+            }
+        });
+
+        comboPropiedad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboPropiedadActionPerformed(evt);
+            }
+        });
+
         buscar.setText("Buscar");
 
         jButton2.setText("Nuevo");
 
         firmar.setText("Firmar");
+        firmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                firmarActionPerformed(evt);
+            }
+        });
 
         modificar.setText("Modificar");
 
@@ -256,48 +290,67 @@ public class contratoVista extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
     // FECHA INICIO
     private void jdFecha1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jdFecha1PropertyChange
         // TODO add your handling code here:
-    if(jdFecha1.getDate()!=null){
-         // Obtener la fecha seleccionada del componente jdFecha y convertirla a Instant
-        Instant instant = jdFecha1.getDate().toInstant();
-        
-        // Convertir Instant a Date utilizando la zona horaria del sistema por defecto
-        Date fechaI = Date.from(instant.atZone(ZoneId.systemDefault()).toInstant());
+        if (jdFecha1.getDate() != null) {
+            // Obtener la fecha seleccionada del componente jdFecha y convertirla a Instant
+            Instant instant = jdFecha1.getDate().toInstant();
 
-        // Formatear la fecha al formato deseado ("aaaa-MM-dd")
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String fechaFormateada = sdf.format(fechaI);
+            // Convertir Instant a Date utilizando la zona horaria del sistema por defecto
+            fecha1 = Date.from(instant.atZone(ZoneId.systemDefault()).toInstant());
 
-        // Establecer el texto del componente jlFecha con la fecha formateada
-        jlFecha1.setText(fechaFormateada);
-    }    
-        
-        
+            // Formatear la fecha al formato deseado ("aaaa-MM-dd")
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            fechaFormateadaInicio = sdf.format(fecha1);
+
+            // Establecer el texto del componente jlFecha con la fecha formateada
+            //jlFecha1.setText(fechaFormateada);
+        }
+
+
     }//GEN-LAST:event_jdFecha1PropertyChange
-    
+
     // FECHA FINAL
     private void jdFecha2PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jdFecha2PropertyChange
         // TODO add your handling code here:
-    if(jdFecha2.getDate()!=null){
-         // Obtener la fecha seleccionada del componente jdFecha y convertirla a Instant
-        Instant instant = jdFecha2.getDate().toInstant();
-        
-        // Convertir Instant a Date utilizando la zona horaria del sistema por defecto
-        Date fechaI = Date.from(instant.atZone(ZoneId.systemDefault()).toInstant());
+        if (jdFecha2.getDate() != null) {
+            // Obtener la fecha seleccionada del componente jdFecha y convertirla a Instant
+            Instant instant = jdFecha2.getDate().toInstant();
 
-        // Formatear la fecha al formato deseado ("aaaa-MM-dd")
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String fechaFormateada = sdf.format(fechaI);
+            // Convertir Instant a Date utilizando la zona horaria del sistema por defecto
+            fecha2 = Date.from(instant.atZone(ZoneId.systemDefault()).toInstant());
 
-        // Establecer el texto del componente jlFecha con la fecha formateada
-        jlFecha2.setText(fechaFormateada);
-    }        
-        
-        
+            // Formatear la fecha al formato deseado ("aaaa-MM-dd")
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            fechaFormateadaFinal = sdf.format(fecha2);
+
+            // Establecer el texto del componente jlFecha con la fecha formateada
+            //jlFecha2.setText(fechaFormateada);
+        }
+
+
     }//GEN-LAST:event_jdFecha2PropertyChange
+
+    private void firmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firmarActionPerformed
+        //aca guardamos firmar contrato
+        fechaHoy = new Date();
+// TODO add your handling code here:
+    }//GEN-LAST:event_firmarActionPerformed
+
+    private void comboInquilinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboInquilinoActionPerformed
+        inquilinoSelec = (Inquilino) comboInquilino.getSelectedItem();
+        idInquilinoSelec = inquilinoSelec.getId_Inquilino();
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboInquilinoActionPerformed
+
+    private void comboPropiedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPropiedadActionPerformed
+        propiedadSelec = (Propiedad) comboPropiedad.getSelectedItem();
+        idPropiedSelec = propiedadSelec.getId_propiedad();
+// TODO add your handling code here:
+    }//GEN-LAST:event_comboPropiedadActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -334,4 +387,43 @@ public class contratoVista extends javax.swing.JInternalFrame {
     private javax.swing.JTextField textVendedor;
     private javax.swing.JTextField textVigencia;
     // End of variables declaration//GEN-END:variables
+
+    public void llenarComboPropiedad() {
+        List<Propiedad> propiedades = new ArrayList<>();
+
+        PropiedadData pd = new PropiedadData();
+        propiedades = pd.listarPropiedad();
+
+        for (Propiedad p1 : propiedades) {
+            comboPropiedad.addItem(p1);
+
+        }
+    }
+
+    public void llenarComboInquilino() {
+        List<Inquilino> inquilinos = new ArrayList<>();
+
+        InquilinoData ind = new InquilinoData();
+        inquilinos = ind.listarinquilino();
+
+        for (Inquilino in1 : inquilinos) {
+            comboInquilino.addItem(in1);
+
+        }
+    }
+
+    public Contrato crearContrato() {
+
+        char marca = textMarca.getText().charAt(0);
+        String vendendor = textVendedor.getText();
+        String vigencia = textVigencia.getText();
+        String garante = textGarante.getText();
+        String dniGarante = textDni.getText();
+        String telGarante = textTel.getText();
+        boolean estado = true;
+
+        contrato1 = new Contrato(inquilinoSelec, fecha2, fecha1, fechaHoy, marca, propiedadSelec, vendendor, estado, vigencia, garante, dniGarante, telGarante);
+        System.out.println(contrato1);
+        return contrato1;
+    }
 }

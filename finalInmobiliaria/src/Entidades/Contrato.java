@@ -4,8 +4,8 @@ package Entidades;
 import java.sql.Date;
 
 
-public class Alquiler {
-    private int id_alquiler;
+public class Contrato {
+    private int id_contrato;
     private Inquilino inquilino;
     private Date fecha_Final;
     private Date fecha_Inicio;
@@ -19,7 +19,25 @@ public class Alquiler {
     private String dniGarante;
     private String telGarante;
 
-    public Alquiler(Inquilino inquilino, Date fecha_Final, Date fecha_Inicio, Date Fecha_Realizacion, char marca, Propiedad propiedad, String vendedor,String vigencia,String nombreGarante,String dniGarante,String telGarante) {
+    public Contrato(Inquilino inquilino, Date fecha_Final, Date fecha_Inicio, Date Fecha_Realizacion, char marca, Propiedad propiedad, String vendedor, boolean estado, String vigencia, String nombreGarante, String dniGarante, String telGarante) {
+        this.inquilino = inquilino;
+        this.fecha_Final = fecha_Final;
+        this.fecha_Inicio = fecha_Inicio;
+        this.Fecha_Realizacion = Fecha_Realizacion;
+        this.marca = marca;
+        this.propiedad = propiedad;
+        this.vendedor = vendedor;
+        this.estado = estado;
+        this.vigencia = vigencia;
+        this.nombreGarante = nombreGarante;
+        this.dniGarante = dniGarante;
+        this.telGarante = telGarante;
+    }
+
+    
+
+    public Contrato(int id_contrato, Inquilino inquilino, Date fecha_Final, Date fecha_Inicio, Date Fecha_Realizacion, char marca, Propiedad propiedad, String vendedor,String vigencia,String nombreGarante,String dniGarante,String telGarante) {
+        this.id_contrato = id_contrato;
         this.inquilino = inquilino;
         this.fecha_Final = fecha_Final;
         this.fecha_Inicio = fecha_Inicio;
@@ -33,30 +51,15 @@ public class Alquiler {
         this.telGarante = telGarante;
     }
 
-    public Alquiler(int id_alquiler, Inquilino inquilino, Date fecha_Final, Date fecha_Inicio, Date Fecha_Realizacion, char marca, Propiedad propiedad, String vendedor,String vigencia,String nombreGarante,String dniGarante,String telGarante) {
-        this.id_alquiler = id_alquiler;
-        this.inquilino = inquilino;
-        this.fecha_Final = fecha_Final;
-        this.fecha_Inicio = fecha_Inicio;
-        this.Fecha_Realizacion = Fecha_Realizacion;
-        this.marca = marca;
-        this.propiedad = propiedad;
-        this.vendedor = vendedor;
-        this.vigencia = vigencia;
-        this.nombreGarante = nombreGarante;
-        this.dniGarante = dniGarante;
-        this.telGarante = telGarante;
+    public Contrato() {
     }
 
-    public Alquiler() {
+    public int getId_contrato() {
+        return id_contrato;
     }
 
-    public int getId_alquiler() {
-        return id_alquiler;
-    }
-
-    public void setId_alquiler(int id_alquiler) {
-        this.id_alquiler = id_alquiler;
+    public void setId_contrato(int id_contrato) {
+        this.id_contrato = id_contrato;
     }
 
     public Inquilino getInquilino() {
@@ -158,7 +161,7 @@ public class Alquiler {
     
     @Override
     public String toString() {
-        return "Alquiler{" + "id_alquiler=" + id_alquiler + ", inquilino=" + inquilino + ", fecha_Final=" + fecha_Final + ", fecha_Inicio=" + fecha_Inicio + ", Fecha_Realizacion=" + Fecha_Realizacion + ", marca=" + marca + ", propiedad=" + propiedad + ", vendedor=" + vendedor + '}';
+        return "Contrato{" + "id_contrato=" + id_contrato + ", inquilino=" + inquilino + ", fecha_Final=" + fecha_Final + ", fecha_Inicio=" + fecha_Inicio + ", Fecha_Realizacion=" + Fecha_Realizacion + ", marca=" + marca + ", propiedad=" + propiedad + ", vendedor=" + vendedor + '}';
     }
     
     
