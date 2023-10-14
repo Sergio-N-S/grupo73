@@ -135,7 +135,7 @@ public class Propiedad {
 
     @Override
     public String toString() {
-        return "Propiedad{" + "id_propiedad=" + id_propiedad + ", propietario=" + propietario + ", precio=" + precio + '}';
+        return  id_propiedad + " " + propietario.getApellido() + " " + precio;
     }
 
        

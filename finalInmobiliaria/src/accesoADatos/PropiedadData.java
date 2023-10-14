@@ -138,29 +138,30 @@ public class PropiedadData {
 
         List<Propiedad> propiedades = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM propiedad WHERE estado = 1 ";
+            String sql = "SELECT * FROM `propiedadinmueble` WHERE estado=1 ";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                Propiedad propiedad;
                
                 propiedad = new Propiedad();
-                Propietario propie=pd.buscarPropietarioPorID(rs.getInt("id_propietario"));
+                propiedad.setId_propiedad(rs.getInt("id_Propiedad"));
+                Propietario propie=pd.buscarPropietarioPorID(rs.getInt("id_Propietario"));
                 
                 propiedad.setPropietario(propie);
+                
                 propiedad.setAccesibilidad(rs.getString("accesibilidad"));
                 propiedad.setDireccion(rs.getString("direccion"));
                 propiedad.setForma(rs.getString("forma"));
-                propiedad.setPrecio(rs.getInt("precioTazado"));
+                propiedad.setPrecio(rs.getFloat("precioTazado"));
                 propiedad.setRevisor(rs.getString("revisor"));
                 propiedad.setSuperficieMinima(rs.getInt("superficieMinima"));
                 propiedad.setTipoPropiedad(rs.getString("tipoDeLocal"));
                 propiedad.setZona(rs.getString("zona"));
-                
-                
+                propiedad.setEstado(true);
+               
                 propiedades.add(propiedad);
-                
-                
+                          
             }
             ps.close();
 

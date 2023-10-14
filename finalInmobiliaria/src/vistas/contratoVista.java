@@ -29,6 +29,9 @@ public class contratoVista extends javax.swing.JInternalFrame {
      */
     public contratoVista() {
         initComponents();
+        llenarComboPropiedad();
+        llenarComboInquilino();
+        
     }
     private Connection con;
     private Inquilino inquilinoSelec;
@@ -39,8 +42,9 @@ public class contratoVista extends javax.swing.JInternalFrame {
     private String fechaFormateadaInicio;
     private String fechaFormateadaFinal;
     private Contrato contrato1;
-    private Date fecha1;
-    private Date fecha2;
+    private Date fechainicial;
+    private Date fechafinal;
+    private String fechahoy;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -139,6 +143,11 @@ public class contratoVista extends javax.swing.JInternalFrame {
         eliminar.setText("Eliminar");
 
         salir.setText("Salir");
+        salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salirActionPerformed(evt);
+            }
+        });
 
         jdFecha1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
@@ -169,7 +178,7 @@ public class contratoVista extends javax.swing.JInternalFrame {
                         .addComponent(eliminar)
                         .addGap(30, 30, 30)
                         .addComponent(salir)
-                        .addGap(0, 19, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
@@ -299,11 +308,11 @@ public class contratoVista extends javax.swing.JInternalFrame {
             Instant instant = jdFecha1.getDate().toInstant();
 
             // Convertir Instant a Date utilizando la zona horaria del sistema por defecto
-            fecha1 = Date.from(instant.atZone(ZoneId.systemDefault()).toInstant());
+            fechainicial = Date.from(instant.atZone(ZoneId.systemDefault()).toInstant());
 
             // Formatear la fecha al formato deseado ("aaaa-MM-dd")
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            fechaFormateadaInicio = sdf.format(fecha1);
+            fechaFormateadaInicio = sdf.format(fechainicial);
 
             // Establecer el texto del componente jlFecha con la fecha formateada
             //jlFecha1.setText(fechaFormateada);
@@ -320,11 +329,11 @@ public class contratoVista extends javax.swing.JInternalFrame {
             Instant instant = jdFecha2.getDate().toInstant();
 
             // Convertir Instant a Date utilizando la zona horaria del sistema por defecto
-            fecha2 = Date.from(instant.atZone(ZoneId.systemDefault()).toInstant());
+            fechafinal = Date.from(instant.atZone(ZoneId.systemDefault()).toInstant());
 
             // Formatear la fecha al formato deseado ("aaaa-MM-dd")
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            fechaFormateadaFinal = sdf.format(fecha2);
+            fechaFormateadaFinal = sdf.format(fechafinal);
 
             // Establecer el texto del componente jlFecha con la fecha formateada
             //jlFecha2.setText(fechaFormateada);
@@ -336,6 +345,9 @@ public class contratoVista extends javax.swing.JInternalFrame {
     private void firmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firmarActionPerformed
         //aca guardamos firmar contrato
         fechaHoy = new Date();
+        crearContrato();
+        
+        
 // TODO add your handling code here:
     }//GEN-LAST:event_firmarActionPerformed
 
@@ -351,6 +363,11 @@ public class contratoVista extends javax.swing.JInternalFrame {
         idPropiedSelec = propiedadSelec.getId_propiedad();
 // TODO add your handling code here:
     }//GEN-LAST:event_comboPropiedadActionPerformed
+
+    private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
+this.dispose();
+// TODO add your handling code here:
+    }//GEN-LAST:event_salirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -421,8 +438,12 @@ public class contratoVista extends javax.swing.JInternalFrame {
         String dniGarante = textDni.getText();
         String telGarante = textTel.getText();
         boolean estado = true;
-
-        contrato1 = new Contrato(inquilinoSelec, fecha2, fecha1, fechaHoy, marca, propiedadSelec, vendendor, estado, vigencia, garante, dniGarante, telGarante);
+         java.sql.Date date1 = java.sql.Date.valueOf(fechaFormateadaFinal);//convierto a sql date
+         java.sql.Date date2 = java.sql.Date.valueOf(fechaFormateadaInicio);//convierto a sql date
+         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");// formato a fecha
+         String formattedDate = simpleDateFormat.format(fechaHoy);//paso a String
+         java.sql.Date datehoy = java.sql.Date.valueOf(formattedDate);//convierto a sql date
+        contrato1 = new Contrato(inquilinoSelec, date1, date2, datehoy, marca, propiedadSelec, vendendor, estado, vigencia, garante, dniGarante, telGarante);
         System.out.println(contrato1);
         return contrato1;
     }

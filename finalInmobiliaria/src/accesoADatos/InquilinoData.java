@@ -160,7 +160,7 @@ public class InquilinoData {
             ps.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Alumno " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Inquilino " + ex.getMessage());
         }
         return inquilinos;
     }
