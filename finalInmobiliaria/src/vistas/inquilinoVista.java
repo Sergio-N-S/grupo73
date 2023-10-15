@@ -18,7 +18,7 @@ public class inquilinoVista extends javax.swing.JInternalFrame {
         guardar.setEnabled(false);
         eliminar.setEnabled(false);
         
-            // Obtén las dimensiones de la pantalla
+    // Obtén las dimensiones de la pantalla
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
     // Calcula el centro de la pantalla
@@ -298,6 +298,22 @@ public class inquilinoVista extends javax.swing.JInternalFrame {
         System.out.println("Inquilino creado");
         InquilinoData idata = new InquilinoData();
         idata.guardarInquilino(inquilino1);
+        
+        textId.setText("");
+        textApe.setText("");
+        textNom.setText("");
+        textDni.setText("");
+        textDetalle.setText("");
+        textTipo.setText("");
+        textCuit.setText("");
+        textTel.setText("");
+        
+        modificar.setEnabled(false);
+        eliminar.setEnabled(false);
+        guardar.setEnabled(false);
+        buscar.setEnabled(true);
+             
+        
     }//GEN-LAST:event_guardarActionPerformed
 
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
