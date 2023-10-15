@@ -26,6 +26,10 @@ public class contratoVista extends javax.swing.JInternalFrame {
         initComponents();
         llenarComboPropiedad();
         llenarComboInquilino();
+        modificar.setEnabled(false);
+        firmar.setEnabled(false);
+        eliminar.setEnabled(false);
+        
         
         // Obtén las dimensiones de la pantalla
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -80,7 +84,7 @@ public class contratoVista extends javax.swing.JInternalFrame {
         comboInquilino = new javax.swing.JComboBox<>();
         comboPropiedad = new javax.swing.JComboBox<>();
         buscar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        nuevo = new javax.swing.JButton();
         firmar = new javax.swing.JButton();
         modificar = new javax.swing.JButton();
         eliminar = new javax.swing.JButton();
@@ -145,10 +149,15 @@ public class contratoVista extends javax.swing.JInternalFrame {
         buscar.setText("Buscar");
         buscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jButton2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/nuevo1.png"))); // NOI18N
-        jButton2.setText("Nuevo");
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        nuevo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/nuevo1.png"))); // NOI18N
+        nuevo.setText("Nuevo");
+        nuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        nuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuevoActionPerformed(evt);
+            }
+        });
 
         firmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/firmar.png"))); // NOI18N
         firmar.setText("Firmar");
@@ -224,7 +233,7 @@ public class contratoVista extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addComponent(firmar, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
@@ -296,7 +305,7 @@ public class contratoVista extends javax.swing.JInternalFrame {
                     .addComponent(modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26))
         );
 
@@ -372,6 +381,29 @@ this.dispose();
 // TODO add your handling code here:
     }//GEN-LAST:event_salirActionPerformed
 
+    private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
+        // TODO add your handling code here:
+        buscar.setEnabled(false);
+        modificar.setEnabled(false);
+        eliminar.setEnabled(false);
+        firmar.setEnabled(true);
+        textDni.setText("");
+        textGarante.setText("");
+        textId.setText("");
+        textMarca.setText("");
+        textTel.setText("");
+        textVendedor.setText("");
+        textVigencia.setText("");
+        
+        
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_nuevoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buscar;
@@ -379,7 +411,6 @@ this.dispose();
     private javax.swing.JComboBox<Propiedad> comboPropiedad;
     private javax.swing.JButton eliminar;
     private javax.swing.JButton firmar;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -396,6 +427,7 @@ this.dispose();
     private com.toedter.calendar.JDateChooser jdFecha1;
     private com.toedter.calendar.JDateChooser jdFecha2;
     private javax.swing.JButton modificar;
+    private javax.swing.JButton nuevo;
     private javax.swing.JButton salir;
     private javax.swing.JTextField textDni;
     private javax.swing.JTextField textGarante;
